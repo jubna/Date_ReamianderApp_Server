@@ -42,7 +42,7 @@ app.post('/register',(req,res)=>{
       //POST - addremainder
     app.post('/addRemainder',(req,res)=>{
         console.log(req.body)
-      dataService.addRemainder(req,req.body.email,req.body.date,req.body.event)
+      dataService.addRemainder(req,req.body.email,req.body.date,req.body.eventMsg)
       .then(result=>{
         res.status(result.statusCode).json(result)
       })
@@ -55,7 +55,31 @@ app.post('/register',(req,res)=>{
         res.status(result.statusCode).json(result)
       })
        });
-  
+    //POST - addremainder
+    app.post('/dltEvent',(req,res)=>{
+      console.log(req.body)
+    dataService. dltEvent(req.body.email,req.body.eventDet)
+    .then(result=>{
+      res.status(result.statusCode).json(result)
+    })
+     });
+
+     app.post('/editEvent',(req,res)=>{
+      console.log(req.body)
+    dataService.editEvent(req.body.email,req.body.indexNum,req.body.Edate,req.body.EMsg)
+    .then(result=>{
+      res.status(result.statusCode).json(result)
+    })
+     });
+
+     app.post('/DisplayRemainder',(req,res)=>{
+      console.log(req.body)
+    dataService.DisplayRemainder(req.body.email)
+    .then(result=>{
+      res.status(result.statusCode).json(result)
+    })
+     });
+
 app.listen(8080,()=>{
     console.log("server started at port : 8080");
 })
